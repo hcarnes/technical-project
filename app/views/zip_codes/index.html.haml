@@ -1,3 +1,5 @@
+%h3 Nearby ZIP Codes Search
 = form_tag search_zip_codes_path, method: :post do
   = text_field_tag :zip_code, nil, placeholder: "Enter ZIP Code"
+  = select_tag :radius, options_for_select([["2 miles", 2], ["10 miles", 10]]), prompt: "Select a radius"
   = submit_tag "Search"
