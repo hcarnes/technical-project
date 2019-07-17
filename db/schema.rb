@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_17_212153) do
+ActiveRecord::Schema.define(version: 2019_07_17_190842) do
 
-  create_table "zip_codes", force: :cascade do |t|
+  create_table "zip_codes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "zip_code"
     t.string "city"
     t.string "state"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_06_17_212153) do
     t.string "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.geometry "location", limit: {:type=>"point", :srid=>0}
   end
 
 end
