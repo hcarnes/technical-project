@@ -8,13 +8,15 @@ namespace :import do
     end
 
     parsed_zip_codes.map do |zip_code|
+      location = RGeo::Geographic.spherical_factory(:srid => 4326).point(zip_code["lng"].strip, zip_code["lat"].strip)
+
       ZipCode.create!(
         zip_code: zip_code["zip"],
         city: zip_code["city"],
         state: zip_code["state"],
-        latitude: zip_code["lat"],
-        longitude: zip_code["lng"],
-        location: "POINT(#{zip_code["lng"]} #{zip_code["lat"]})"
+        latitude: zip_code["lat"].strip,
+        longitude: zip_code["lng"].strip,
+        location: location
       )
     end
   end
